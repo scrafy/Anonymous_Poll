@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Survey";
+}
+<div class="wrapper">
+    @using (Html.BeginForm("Search", "Survey", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label>INPUT</label>
+        <textarea rows="10" cols="50" name="input"></textarea>
+        <input type="submit" value="Search" class="btn btn-primary"/>
+    }
+    <div class="result">
+
+    </div>
+</div>

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Anonymous_Poll.Infraestructure.Binders;
+using Anonymous_Poll.Infraestructure.Binders.Providers;
+using Anonymous_Poll.Infraestructure.Interfaces;
+using Anonymous_Poll.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,8 +35,15 @@ namespace Anonymous_Poll
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<I_AlumnsRepository, AlumnsRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddMvc(
+
+                config => config.ModelBinderProviders.Insert(0,
+                new ModelBinderProvider())
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +55,7 @@ namespace Anonymous_Poll
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Survey/Error");
                 app.UseHsts();
             }
 
@@ -56,7 +67,7 @@ namespace Anonymous_Poll
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Survey}/{action=Index}");
             });
         }
     }

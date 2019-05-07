@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,5 +15,14 @@
     <Folder Include="Infraestructure\Interfaces\" />
     <Folder Include="Infraestructure\Repositories\" />
     <Folder Include="Data\" />
+    <Folder Include="Infraestructure\Binders\" />
+    <Folder Include="Infraestructure\Binders\Providers\" />
+    <Folder Include="Views\Survey\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="bundleconfig.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bundleconfig.js" />
   </ItemGroup>
 </Project>
